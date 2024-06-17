@@ -1,131 +1,161 @@
 <html>
-  <head>
-    
-</head>
-  <body>
-    <div id="syno-notification-is-installed">
-      
-    </div>
-
-    <script>      
-
-      /*
-{
-  "dataList":{
-    "202307": 15,
-    "202308": 15,
-    "202309": 17,
-    "202310": 16,
-    "202311": 20,
-    "202312": 22,
-    "202401": 27,
-    "202402": 29,
-    "202403": 31,
-    "202404": 35
-  },
-  "tableName":"景氣訊號燈"
-}      
-      
-      */
-  // document.getElementById('syno-notification-is-installed').innerText=decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=',''))
-  const inpObject = JSON.parse(decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=','')));
-      
-  // 創建新的 Canvas 元素並設置其尺寸
-  const canvas = document.createElement('canvas');
-  canvas.width = 850;
-  canvas.height = 450;
-
-  //获取具有特定 ID 的 div 元素
-  const container = document.getElementById('syno-notification-is-installed');
-  //将 canvas 元素添加到 div 元素中
-  if (container) {
-     container.appendChild(canvas);
-  } else {
-     console.error('Element with ID "syno-notification-is-installed" not found.');
-  }
-
-  // 獲取 Canvas 上下文
-  const ctx = canvas.getContext('2d');
-
-  /*
-  // 提供的數據
-  var data = {
-    "202307": 15,
-    "202308": 15,
-    "202309": 17,
-    "202310": 16,
-    "202311": 20,
-    "202312": 22,
-    "202401": 27,
-    "202402": 29,
-    "202403": 31,
-    "202404": 35
-  };
-  */
-
-  // 提供的數據
-  var data = inpObject.dataList;
-
-  // 繪製圖表
-  const keys = Object.keys(data);
-  const values = Object.values(data);
-
-  // 設置圖表參數
-  const chartWidth = canvas.width - 100;
-  const chartHeight = canvas.height - 100;
-  const maxVal = Math.max(...values);
-  const minVal = Math.min(...values);
-  const xScale = chartWidth / keys.length;
-  const yScale = chartHeight / (maxVal - minVal);
-
-  const leftMargin = 50;
-  const topMargin = 50;
-  // 設置黑色字體
-  ctx.fillStyle = 'black';
-  // 設置字體大小和樣式
-  ctx.font = "30px Arial";
-  //打上標題
-  ctx.fillText(inpObject.tableName, 20, 30);
-  // 繪製坐標軸  
-  ctx.beginPath();
-  ctx.moveTo(leftMargin, topMargin);
-  ctx.lineTo(leftMargin, chartHeight + topMargin);
-  ctx.lineTo(chartWidth + leftMargin, chartHeight + topMargin);
-  ctx.stroke();
-
-  // 繪製數據點和連接線
-  ctx.beginPath();
-  keys.forEach((key, index) => {
-    const x = leftMargin + index * xScale;
-    const y = chartHeight + topMargin - (data[key] - minVal) * yScale;
-
-    // 設置黑色字體
-    ctx.fillStyle = 'black';
-    ctx.lineTo(x, y);
-    //圓點  
-    ctx.arc(x, y, 2, 0, Math.PI * 2, true);
-
-
-    // 設置紅色字體
-    ctx.fillStyle = 'red';
-    // 設置字體大小和樣式
-    ctx.font = "30px Arial";
-    // 繪製數據值
-    ctx.fillText(data[key], x - 10, y - 10);
-
-    // 設置字體大小和樣式
-    ctx.font = "10px Arial";
-    // 繪製月份
-    ctx.fillText(key, x - 15, chartHeight + topMargin + 15);
-  });
-  ctx.stroke();
-
-  // 將 canvas 轉換為圖像 URL
-  const dataURL = canvas.toDataURL('image/png');
-  console.log(dataURL);
-  //console.log(canvas);
-  //window.location.href=dataURL;
-  
-</script>
-  </body>
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Meta Preview Example</title>
+      <!-- Ensure default meta tags are in place -->
+      <meta property="og:title" content="Default Title">
+      <meta property="og:description" content="Default Description">
+      <meta property="og:image" content="default.jpg">
+      <meta name="twitter:card" content="summary_large_image">
+      <meta name="twitter:title" content="Default Title">
+      <meta name="twitter:description" content="Default Description">
+      <meta name="twitter:image" content="default.jpg">
+   </head>
+   <body>
+      <div id="syno-notification-is-installed">
+      </div>
+      <script>      
+         /*
+         {
+         "dataList":{
+         "202307": 15,
+         "202308": 15,
+         "202309": 17,
+         "202310": 16,
+         "202311": 20,
+         "202312": 22,
+         "202401": 27,
+         "202402": 29,
+         "202403": 31,
+         "202404": 35
+         },
+         "tableName":"景氣訊號燈"
+         }      
+         
+         */
+         // document.getElementById('syno-notification-is-installed').innerText=decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=',''))
+         const inpObject = JSON.parse(decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=','')));
+         
+         // 創建新的 Canvas 元素並設置其尺寸
+         const canvas = document.createElement('canvas');
+         canvas.width = 850;
+         canvas.height = 450;
+         
+         //获取具有特定 ID 的 div 元素
+         const container = document.getElementById('syno-notification-is-installed');
+         //将 canvas 元素添加到 div 元素中
+         if (container) {
+         container.appendChild(canvas);
+         } else {
+         console.error('Element with ID "syno-notification-is-installed" not found.');
+         }
+         
+         // 獲取 Canvas 上下文
+         const ctx = canvas.getContext('2d');
+         
+         /*
+         // 提供的數據
+         var data = {
+         "202307": 15,
+         "202308": 15,
+         "202309": 17,
+         "202310": 16,
+         "202311": 20,
+         "202312": 22,
+         "202401": 27,
+         "202402": 29,
+         "202403": 31,
+         "202404": 35
+         };
+         */
+         
+         // 提供的數據
+         var data = inpObject.dataList;
+         
+         // 繪製圖表
+         const keys = Object.keys(data);
+         const values = Object.values(data);
+         
+         // 設置圖表參數
+         const chartWidth = canvas.width - 100;
+         const chartHeight = canvas.height - 100;
+         const maxVal = Math.max(...values);
+         const minVal = Math.min(...values);
+         const xScale = chartWidth / keys.length;
+         const yScale = chartHeight / (maxVal - minVal);
+         
+         const leftMargin = 50;
+         const topMargin = 50;
+         // 設置黑色字體
+         ctx.fillStyle = 'black';
+         // 設置字體大小和樣式
+         ctx.font = "30px Arial";
+         //打上標題
+         ctx.fillText(inpObject.tableName, 20, 30);
+         // 繪製坐標軸  
+         ctx.beginPath();
+         ctx.moveTo(leftMargin, topMargin);
+         ctx.lineTo(leftMargin, chartHeight + topMargin);
+         ctx.lineTo(chartWidth + leftMargin, chartHeight + topMargin);
+         ctx.stroke();
+         
+         // 繪製數據點和連接線
+         ctx.beginPath();
+         keys.forEach((key, index) => {
+         const x = leftMargin + index * xScale;
+         const y = chartHeight + topMargin - (data[key] - minVal) * yScale;
+         
+         // 設置黑色字體
+         ctx.fillStyle = 'black';
+         ctx.lineTo(x, y);
+         //圓點  
+         ctx.arc(x, y, 2, 0, Math.PI * 2, true);
+         
+         
+         // 設置紅色字體
+         ctx.fillStyle = 'red';
+         // 設置字體大小和樣式
+         ctx.font = "30px Arial";
+         // 繪製數據值
+         ctx.fillText(data[key], x - 10, y - 10);
+         
+         // 設置字體大小和樣式
+         ctx.font = "10px Arial";
+         // 繪製月份
+         ctx.fillText(key, x - 15, chartHeight + topMargin + 15);
+         });
+         ctx.stroke();
+         
+         // 將 canvas 轉換為圖像 URL
+         const dataURL = canvas.toDataURL('image/png');
+         updateMetaTags(dataURL);
+         console.log(dataURL);
+         //console.log(canvas);
+         //window.location.href=dataURL;
+         
+           function updateMetaTags(imageUrl) {
+               // Open Graph meta tags
+               let ogImage = document.querySelector('meta[property="og:image"]');
+               if (!ogImage) {
+                   ogImage = document.createElement('meta');
+                   ogImage.setAttribute('property', 'og:image');
+                   document.head.appendChild(ogImage);
+               }
+               ogImage.setAttribute('content', imageUrl);
+         
+               // Twitter meta tags
+               let twitterImage = document.querySelector('meta[name="twitter:image"]');
+               if (!twitterImage) {
+                   twitterImage = document.createElement('meta');
+                   twitterImage.setAttribute('name', 'twitter:image');
+                   document.head.appendChild(twitterImage);
+               }
+               twitterImage.setAttribute('content', imageUrl);
+         
+               console.log('Meta tags updated with image URL:', imageUrl);
+           }      
+         
+      </script>
+   </body>
 </html>
