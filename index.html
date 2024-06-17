@@ -7,19 +7,28 @@
       
     </div>
 
-    <script>
-      document.getElementById('syno-notification-is-installed').innerText=window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?','');
+    <script>      
+  // document.getElementById('syno-notification-is-installed').innerText=decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=',''))
+  const inpObject = JSON.parse(decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=','')));
+      
   // 創建新的 Canvas 元素並設置其尺寸
   const canvas = document.createElement('canvas');
   canvas.width = 850;
   canvas.height = 450;
 
-  // 將 Canvas 元素添加到 DOM 中的某個容器
-  //document.getElementById('canvasContainer').appendChild(canvas);
+  //获取具有特定 ID 的 div 元素
+  const container = document.getElementById('syno-notification-is-installed');
+  //将 canvas 元素添加到 div 元素中
+  if (container) {
+     container.appendChild(canvas);
+  } else {
+     console.error('Element with ID "syno-notification-is-installed" not found.');
+  }
 
   // 獲取 Canvas 上下文
   const ctx = canvas.getContext('2d');
 
+  /*
   // 提供的數據
   var data = {
     "202307": 15,
@@ -33,8 +42,10 @@
     "202403": 31,
     "202404": 35
   };
+  */
 
-
+  // 提供的數據
+  var data = inpObject.dataList;
 
   // 繪製圖表
   const keys = Object.keys(data);
@@ -55,7 +66,7 @@
   // 設置字體大小和樣式
   ctx.font = "30px Arial";
   //打上標題
-  ctx.fillText('景氣訊號燈', 20, 20);
+  ctx.fillText(inpObject.tableName, 20, 20);
   // 繪製坐標軸  
   ctx.beginPath();
   ctx.moveTo(leftMargin, topMargin);
