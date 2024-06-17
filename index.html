@@ -8,6 +8,25 @@
     </div>
 
     <script>      
+
+      /*
+{
+  "dataList":{
+    "202307": 15,
+    "202308": 15,
+    "202309": 17,
+    "202310": 16,
+    "202311": 20,
+    "202312": 22,
+    "202401": 27,
+    "202402": 29,
+    "202403": 31,
+    "202404": 35
+  },
+  "tableName":"景氣訊號燈"
+}      
+      
+      */
   // document.getElementById('syno-notification-is-installed').innerText=decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=',''))
   const inpObject = JSON.parse(decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=','')));
       
@@ -66,7 +85,7 @@
   // 設置字體大小和樣式
   ctx.font = "30px Arial";
   //打上標題
-  ctx.fillText(inpObject.tableName, 20, 20);
+  ctx.fillText(inpObject.tableName, 20, 30);
   // 繪製坐標軸  
   ctx.beginPath();
   ctx.moveTo(leftMargin, topMargin);
