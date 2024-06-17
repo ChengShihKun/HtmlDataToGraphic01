@@ -1,0 +1,89 @@
+<script>
+  // 創建新的 Canvas 元素並設置其尺寸
+  const canvas = document.createElement('canvas');
+  canvas.width = 850;
+  canvas.height = 450;
+
+  // 將 Canvas 元素添加到 DOM 中的某個容器
+  //document.getElementById('canvasContainer').appendChild(canvas);
+
+  // 獲取 Canvas 上下文
+  const ctx = canvas.getContext('2d');
+
+  // 提供的數據
+  var data = {
+    "202307": 15,
+    "202308": 15,
+    "202309": 17,
+    "202310": 16,
+    "202311": 20,
+    "202312": 22,
+    "202401": 27,
+    "202402": 29,
+    "202403": 31,
+    "202404": 35
+  };
+
+
+
+  // 繪製圖表
+  const keys = Object.keys(data);
+  const values = Object.values(data);
+
+  // 設置圖表參數
+  const chartWidth = canvas.width - 100;
+  const chartHeight = canvas.height - 100;
+  const maxVal = Math.max(...values);
+  const minVal = Math.min(...values);
+  const xScale = chartWidth / keys.length;
+  const yScale = chartHeight / (maxVal - minVal);
+
+  const leftMargin = 50;
+  const topMargin = 50;
+  // 設置黑色字體
+  ctx.fillStyle = 'black';
+  // 設置字體大小和樣式
+  ctx.font = "30px Arial";
+  //打上標題
+  ctx.fillText('景氣訊號燈', 20, 20);
+  // 繪製坐標軸  
+  ctx.beginPath();
+  ctx.moveTo(leftMargin, topMargin);
+  ctx.lineTo(leftMargin, chartHeight + topMargin);
+  ctx.lineTo(chartWidth + leftMargin, chartHeight + topMargin);
+  ctx.stroke();
+
+  // 繪製數據點和連接線
+  ctx.beginPath();
+  keys.forEach((key, index) => {
+    const x = leftMargin + index * xScale;
+    const y = chartHeight + topMargin - (data[key] - minVal) * yScale;
+
+    // 設置黑色字體
+    ctx.fillStyle = 'black';
+    ctx.lineTo(x, y);
+    //圓點  
+    ctx.arc(x, y, 2, 0, Math.PI * 2, true);
+
+
+    // 設置紅色字體
+    ctx.fillStyle = 'red';
+    // 設置字體大小和樣式
+    ctx.font = "30px Arial";
+    // 繪製數據值
+    ctx.fillText(data[key], x - 10, y - 10);
+
+    // 設置字體大小和樣式
+    ctx.font = "10px Arial";
+    // 繪製月份
+    ctx.fillText(key, x - 15, chartHeight + topMargin + 15);
+  });
+  ctx.stroke();
+
+  // 將 canvas 轉換為圖像 URL
+  const dataURL = canvas.toDataURL('image/png');
+  console.log(dataURL);
+  //console.log(canvas);
+  //window.location.href=dataURL;
+  
+</script>
