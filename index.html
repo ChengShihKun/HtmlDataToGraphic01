@@ -11,6 +11,7 @@
       <meta name="twitter:title" content="Default Title">
       <meta name="twitter:description" content="Default Description">
       <meta name="twitter:image" content="default.jpg">
+      <meta http-equiv="generateGraphic">
    </head>
    <body>
       <div id="syno-notification-is-installed">
@@ -34,7 +35,10 @@
          }      
          
          */
-         // document.getElementById('syno-notification-is-installed').innerText=decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=',''))
+
+         function generateGraphic()
+         {
+            // document.getElementById('syno-notification-is-installed').innerText=decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=',''))
          const inpObject = JSON.parse(decodeURIComponent(window.location.href.replace('https://chengshihkun.github.io/HtmlDataToGraphic01/?inpData=','')));
          
          // 創建新的 Canvas 元素並設置其尺寸
@@ -154,7 +158,8 @@
                twitterImage.setAttribute('content', imageUrl);
          
                console.log('Meta tags updated with image URL:', imageUrl);
-           }      
+           } 
+         }
          
       </script>
    </body>
